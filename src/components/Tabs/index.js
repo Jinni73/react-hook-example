@@ -15,7 +15,7 @@ const TabsWrapper = styled.div`
 `;
 
 export default function Tabs() {
-  const [ reduxState, dispatch ] = AppReducer();
+  const [ , dispatch ] = AppReducer();
 
   const handleTabSwitch = (tabIndex) => dispatch({ type: tabIndex });
 

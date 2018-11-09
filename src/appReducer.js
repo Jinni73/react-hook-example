@@ -8,13 +8,13 @@ function AppReducer(state, action) {
   debugger
   switch (action.type) {
     case 1:
-      return { ...intialState, visibleTab: 1 };
+      return { ...state, visibleTab: 1 };
     case 2:
-      return { ...intialState, visibleTab: 2 };
+      return { ...state, visibleTab: 2 };
     case 3:
-      return { ...intialState, visibleTab: 3 };
+      return { ...state, visibleTab: 3 };
     default:
-      return intialState;
+      return state;
   }
 }
 
