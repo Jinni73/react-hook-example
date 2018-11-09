@@ -16,6 +16,8 @@ const Nav = () => (
     <Link to="/">Home</Link>
     <Link to="/old">Old</Link>
     <Link to="/new">New</Link>
+    <Link to="/old-tabby">Old Tabby</Link>
+    <Link to="/new-tabby">New Tabby</Link>
   </NavWrapper>
 );
 

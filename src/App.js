@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import OldList from './components/OldList';
 import NewList from './components/NewList';
+import OldTabby from './components/OldTabby';
+import NewTabby from './components/NewTabby';
 import { ThemeContext } from './context';
 import './App.css'
 class App extends Component {
@@ -18,6 +20,8 @@ class App extends Component {
           <ThemeContext.Provider value="#346BC8">
             <Route path='/new' component={NewList} />
           </ThemeContext.Provider>
+          <Route path='/old-tabby' component={OldTabby} />
+          <Route path='/new-tabby' component={NewTabby} />
         </Layout>
       </Router>
     );

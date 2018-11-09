@@ -7,7 +7,7 @@ export default function NewList() {
   const firstName = useFormInput('Mary');
   const lastName = useFormInput('Poppins');
   const theme = useContext(ThemeContext);
-  const width = useWindowWith();
+  const width = useWindowWidth();
   useDocTitle(`${firstName.value} ${lastName.value}`)
 
   return (
@@ -42,7 +42,7 @@ function useDocTitle(title) {
   });
 }
 
-function useWindowWith() {
+function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
