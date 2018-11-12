@@ -6,6 +6,7 @@ const TabsWrapper = styled.div`
   display: flex;
   width: 270px;
   justify-content: space-between;
+  margin-bottom: 15px;
   .tab {
     padding: 15px;
     background: #E8373F;

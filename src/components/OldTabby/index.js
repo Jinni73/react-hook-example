@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import TabbyContainer from '../TabbyContainer';
 import TabContent from '../TabContent';
 import Tabs from '../Tabs';
@@ -10,6 +10,11 @@ export default function OldTabby() {
   const {reduxState} = useContext(ReduxContext);
   const { visibleTab } = reduxState;
   const users = useUserData('https://reqres.in/api/users?page=2');
+  const inputElm = useRef();
+
+  function onBtnClick() {
+    inputElm.current.focus();
+  }
 
   return (
     <TabbyContainer>
@@ -17,20 +22,31 @@ export default function OldTabby() {
       <TabContent isVisble={visibleTab===1}>
         {
           () => users.map((ud) => (
-            <React.Fragment key={ud.id}>
-              <img key={ud.id+'avarter'} src={ud.avatar} alt={ud.first_name}/>
+            <section key={ud.id}>
+              <img
+                key={ud.id+'avarter'}
+                src={ud.avatar}
+                alt={ud.first_name}
+              />
               <span key={ud.id+ud.first_name+ud.last_name}>
                 {ud.first_name + ' ' + ud.last_name}
               </span>
-            </React.Fragment>
+            </section>
           ))
         }
       </TabContent>
       <TabContent isVisble={visibleTab===2}>
-        { () => <div>2wwwewe</div> }
+        {
+          () => (
+            <>
+              <input ref={inputElm} />
+              <button onClick={onBtnClick}>Focus</button>
+            </>
+          )
+        }
       </TabContent>
       <TabContent isVisble={visibleTab===3}>
-        { () => <div>3wwwewe</div> }
+        { () => <div>Tab 3 content</div> }
       </TabContent>
     </TabbyContainer>
   );
