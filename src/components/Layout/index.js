@@ -5,6 +5,7 @@ import Nav from '../Nav';
 const LayoutWrapper = styled.div`
   background-color: #282c34;
   height: 100vh;
+  width: 100vw;
   padding: 1px;
   position: relative;
   color: white;

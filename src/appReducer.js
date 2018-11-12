@@ -5,7 +5,6 @@ const intialState = {
 };
 
 function AppReducer(state, action) {
-  debugger
   switch (action.type) {
     case 1:
       return { ...state, visibleTab: 1 };

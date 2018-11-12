@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import AppReducer from '../../appReducer';
+import { ReduxContext } from '../../context';
 
 const TabsWrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const TabsWrapper = styled.div`
 `;
 
 export default function Tabs() {
-  const [ , dispatch ] = AppReducer();
+  const {dispatch} = useContext(ReduxContext);
 
   const handleTabSwitch = (tabIndex) => dispatch({ type: tabIndex });
 
