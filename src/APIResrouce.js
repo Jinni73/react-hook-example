@@ -6,6 +6,11 @@ async function getResource(url) {
   return data.data;
 }
 
+function getRes(url, handler) {
+  console.log('-----run')
+  axios.get(url).then(res => { handler(res.data.data) });
+}
+
 function postResrouce(url) {
 
 }
@@ -13,4 +18,5 @@ function postResrouce(url) {
 export default {
   read: getResource,
   post: postResrouce,
+  readProm: getRes,
 }

@@ -9,6 +9,7 @@ export default function NewList() {
   const theme = useContext(ThemeContext);
   const width = useWindowWidth();
   useDocTitle(`${firstName.value} ${lastName.value}`)
+  console.log('width', width)
 
   return (
     <ListWrapper theme={theme}>
@@ -47,6 +48,9 @@ function useWindowWidth() {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
+    // setTimeout(() => {
+    //   handleResize();
+    // }, 1000)
     // return a function to unsub
     return () => {
       window.removeEventListener('resize', handleResize);

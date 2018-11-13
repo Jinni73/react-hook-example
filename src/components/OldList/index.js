@@ -18,6 +18,7 @@ export default class OldList extends React.Component {
     this.setState({ width: window.innerWidth })
   }
 
+  // Imperative
   componentDidMount(){
     document.title = `${this.state.firstname} ${this.state.lastname}`;
     window.addEventListener('resize', this.handleResize);

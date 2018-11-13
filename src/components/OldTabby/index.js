@@ -3,6 +3,7 @@ import TabbyContainer from '../TabbyContainer';
 import TabContent from '../TabContent';
 import Tabs from '../Tabs';
 import { ReduxContext } from '../../context';
+// import { fromJS } from 'immutable';
 // import { unstable_createResource } from 'react-cache';
 import APIResource from '../../APIResrouce';
 
@@ -11,6 +12,8 @@ export default function OldTabby() {
   const { visibleTab } = reduxState;
   const users = useUserData('https://reqres.in/api/users?page=2');
   const inputElm = useRef();
+
+  console.log(users);
 
   function onBtnClick() {
     inputElm.current.focus();
@@ -52,13 +55,26 @@ export default function OldTabby() {
   );
 }
 
+// function useUserData(path) {
+//   const [users, setUsers] = useState([]);
+//   const userPromise = APIResource.read(path);
+//   useEffect(() =>{  
+//     userPromise.then(res => {
+//       setUsers(res.data);
+//     });
+//   }, [path]);
+//   return users;
+// }
+
 function useUserData(path) {
   const [users, setUsers] = useState([]);
-  const userPromise = APIResource.read(path);
-  useEffect(() =>{  
-    userPromise.then(res => {
-      setUsers(res.data);
-    });
+  function handleUsers(users) {
+    setUsers(users);
+  }
+
+  useEffect(() => {  
+    APIResource.readProm(path, handleUsers);
   }, [path]);
+  
   return users;
 }
