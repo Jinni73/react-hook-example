@@ -8,6 +8,8 @@ import { ReduxContext } from '../../context';
 import APIResource from '../../APIResrouce';
 
 export default function OldTabby() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
   const {reduxState} = useContext(ReduxContext);
   const { visibleTab } = reduxState;
   const users = useUserData('https://reqres.in/api/users?page=2');
@@ -19,9 +21,15 @@ export default function OldTabby() {
     inputElm.current.focus();
   }
 
+  function handleCnt() {
+    setCount(count+1);
+  }
+
   return (
     <TabbyContainer>
       <Tabs />
+      <h1>Now: {count}, before: {prevCount}</h1>
+      <button onClick={handleCnt}>count</button>
       <TabContent isVisble={visibleTab===1}>
         {
           () => users.map((ud) => (
@@ -77,4 +85,12 @@ function useUserData(path) {
   }, [path]);
   
   return users;
+}
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 }

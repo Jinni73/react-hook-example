@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useMemo } from 'react';
 import ListWrapper from '../ListWrapper';
 import { ThemeContext } from '../../context';
 import Row from '../Row';
+import Parent from '../Parent';
 
 export default function NewList() {
   const firstName = useFormInput('Mary');
@@ -9,18 +10,30 @@ export default function NewList() {
   const theme = useContext(ThemeContext);
   const width = useWindowWidth();
   useDocTitle(`${firstName.value} ${lastName.value}`)
-  console.log('width', width)
+  // console.log('width', width)
+
+  // 记住promos，避免不必要的re-render
+  const childFn = useMemo(() => (
+    <Row label="First Name">
+      <input {...firstName} />
+    </Row>
+  ), [firstName]);
+
+  const childLn = useMemo(() => (
+    <Row label="Last Name">
+      <input {...lastName} />
+    </Row>
+  ), [lastName]);
 
   return (
     <ListWrapper theme={theme}>
-      <Row label="First Name">
-        <input {...firstName} />
-      </Row>
-      <Row label="Last Name">
-        <input {...lastName} />
-      </Row>
+      {childFn}
+      {childLn}
       <Row label="Width">
         <div className="display">{width}</div>
+      </Row>
+      <Row label="memo">
+        <Parent a="hello" b="child" />
       </Row>
     </ListWrapper>
   );
@@ -56,6 +69,6 @@ function useWindowWidth() {
       window.removeEventListener('resize', handleResize);
     }
   });
-  console.log('*****', width)
+  // console.log('*****', width)
   return width;
 }

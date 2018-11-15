@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const RowWrapper = styled.div`
@@ -29,11 +29,14 @@ const RowWrapper = styled.div`
   }
 `;
 
-const Row = ({ children, label }) => (
-  <RowWrapper>
-    <div className="label">{label}</div>
-    {children}
-  </RowWrapper>
-);
+const Row = memo(({ children, label }) => {
+  // console.log('....render row', label);
+  return (
+    <RowWrapper>
+      <div className="label">{label}</div>
+      {children}
+    </RowWrapper>
+  )
+})
 
 export default Row;
